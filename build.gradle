@@ -46,10 +46,7 @@ minecraft {
     version = "1.9-12.16.0.1769-1.9"
     runDir = "run"
     
-    mappings = "snapshot_20160312"
-
-    //srgExtra "PK: org/pircbotx com/cnaude/purpleirc/ext/org/pircbotx"
-    //srgExtra "PK: io/drakon/pulsar /"
+    mappings = "${forge_mappings}"
 
     replaceIn "Version.java"
     replace "@VERSION@", "${project.version}"
