@@ -1,0 +1,85 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        name = "dynmap"
+        url = "http://repo.mikeprimm.com"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        name 'Chris Naude'
+        url "http://www.cnaude.org/repo"
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'java' // or 'groovy'. Must be explicitly applied
+apply plugin: 'maven-publish'
+
+def jenkinsBuild = System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"
+version = "${minecraft_version}-${PurpleIRC_version}-${jenkinsBuild}"
+group = "com.cnaude.purpleirc"
+archivesBaseName = "PurpleIRC"
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+minecraft {
+    version = "1.9-12.16.0.1769-1.9"
+    runDir = "run"
+    
+    mappings = "snapshot_20160312"
+
+    //srgExtra "PK: org/pircbotx com/cnaude/purpleirc/ext/org/pircbotx"
+    //srgExtra "PK: io/drakon/pulsar /"
+
+    replaceIn "Version.java"
+    replace "@VERSION@", "${project.version}"
+
+}
+
+dependencies {
+    compile 'us.dynmap:DynmapCoreAPI:2.1'
+    shade fileTree (dir: 'dist-lib', include: '*.jar')
+    shade 'org.yaml:snakeyaml:1.15'
+    shade 'com.googlecode.json-simple:json-simple:1.1.1'
+}
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+compileJava
+{
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
