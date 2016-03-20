@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 import com.cnaude.purpleirc.Utilities.BotsAndChannels;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Voice implements IRCCommandInterface {
     private final String usage = "([bot]) ([channel]) [user(s)]";
     private final String desc = "Voice an IRC user in a channel.";
     private final String name = "voice";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -68,9 +68,9 @@ public class Voice implements IRCCommandInterface {
                     for (int i = idx; i < args.length; i++) {
                         plugin.ircBots.get(botName).voice(channelName, args[i]);
                         sender.sendMessage("Giving voice status to "
-                                + ChatFormatting.WHITE + args[i]
-                                + ChatFormatting.RESET + " on "
-                                + ChatFormatting.WHITE + channelName);
+                                + TextFormatting.WHITE + args[i]
+                                + TextFormatting.RESET + " on "
+                                + TextFormatting.WHITE + channelName);
                     }
                 }
             }

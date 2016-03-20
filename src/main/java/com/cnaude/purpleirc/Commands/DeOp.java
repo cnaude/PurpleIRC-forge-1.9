@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 import com.cnaude.purpleirc.Utilities.BotsAndChannels;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class DeOp implements IRCCommandInterface {
     private final String usage = "([bot]) ([channel]) [user(s)]";
     private final String desc = "De-op IRC user(s).";
     private final String name = "deop";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -68,9 +68,9 @@ public class DeOp implements IRCCommandInterface {
                     for (int i = idx; i < args.length; i++) {
                         plugin.ircBots.get(botName).deOp(channelName, args[i]);
                         sender.sendMessage("Removing operator status from "
-                                + ChatFormatting.WHITE + args[i]
-                                + ChatFormatting.RESET + " in "
-                                + ChatFormatting.WHITE + channelName);
+                                + TextFormatting.WHITE + args[i]
+                                + TextFormatting.RESET + " in "
+                                + TextFormatting.WHITE + channelName);
                     }
                 }
             }

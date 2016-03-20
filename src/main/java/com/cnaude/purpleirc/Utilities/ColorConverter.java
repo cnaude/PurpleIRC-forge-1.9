@@ -17,7 +17,7 @@
 package com.cnaude.purpleirc.Utilities;
 
 import com.cnaude.purpleirc.PurpleIRC;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,8 +33,8 @@ public class ColorConverter {
     private final boolean stripGameColors;
     private final boolean stripIRCColors;
     private final boolean stripIRCBackgroundColors;
-    private final HashMap<ChatFormatting, String> ircColorMap = new HashMap<>();
-    private final HashMap<String, ChatFormatting> gameColorMap = new HashMap<>();
+    private final HashMap<TextFormatting, String> ircColorMap = new HashMap<>();
+    private final HashMap<String, TextFormatting> gameColorMap = new HashMap<>();
     private final Pattern bgColorPattern;
     private final Pattern singleDigitColorPattern;
     private final Pattern stripColorPattern;
@@ -73,7 +73,7 @@ public class ColorConverter {
             return ChatColor.stripColor(message);
         } else {
             String newMessage = message;
-            for (ChatFormatting gameColor : ircColorMap.keySet()) {
+            for (TextFormatting gameColor : ircColorMap.keySet()) {
                 newMessage = newMessage.replace(gameColor.toString(), ircColorMap.get(gameColor));
             }
             // We return the message with the remaining MC color codes stripped out
@@ -123,7 +123,7 @@ public class ColorConverter {
     }
 
     public void addIrcColorMap(String gameColor, String ircColor) {
-        ChatFormatting chatColor;
+        TextFormatting chatColor;
         try {
             chatColor = ChatColor.valueOf(gameColor.toUpperCase());
             if (ircColor.equalsIgnoreCase("strip") && ircColorMap.containsKey(chatColor)) {
@@ -147,9 +147,9 @@ public class ColorConverter {
             gameColorMap.remove(getIrcColor(ircColor));
             return;
         }
-        ChatFormatting chatColor;
+        TextFormatting chatColor;
         try {
-            chatColor = ChatFormatting.getByName(gameColor.toUpperCase());
+            chatColor = ChatColor.valueOf(gameColor.toUpperCase());
         } catch (Exception ex) {
             plugin.logError("Invalid game color: " + gameColor);
             return;
@@ -172,45 +172,45 @@ public class ColorConverter {
     }
 
     private void buildDefaultColorMaps() {
-        ircColorMap.put(ChatFormatting.AQUA, Colors.CYAN);
-        ircColorMap.put(ChatFormatting.BLACK, Colors.BLACK);
-        ircColorMap.put(ChatFormatting.BLUE, Colors.BLUE);
-        ircColorMap.put(ChatFormatting.BOLD, Colors.BOLD);
-        ircColorMap.put(ChatFormatting.DARK_AQUA, Colors.TEAL);
-        ircColorMap.put(ChatFormatting.DARK_BLUE, Colors.DARK_BLUE);
-        ircColorMap.put(ChatFormatting.DARK_GRAY, Colors.DARK_GRAY);
-        ircColorMap.put(ChatFormatting.DARK_GREEN, Colors.DARK_GREEN);
-        ircColorMap.put(ChatFormatting.DARK_PURPLE, Colors.PURPLE);
-        ircColorMap.put(ChatFormatting.DARK_RED, Colors.RED);
-        ircColorMap.put(ChatFormatting.GOLD, Colors.OLIVE);
-        ircColorMap.put(ChatFormatting.GRAY, Colors.LIGHT_GRAY);
-        ircColorMap.put(ChatFormatting.GREEN, Colors.GREEN);
-        ircColorMap.put(ChatFormatting.LIGHT_PURPLE, Colors.MAGENTA);
-        ircColorMap.put(ChatFormatting.RED, Colors.RED);
-        ircColorMap.put(ChatFormatting.UNDERLINE, Colors.UNDERLINE);
-        ircColorMap.put(ChatFormatting.YELLOW, Colors.YELLOW);
-        ircColorMap.put(ChatFormatting.WHITE, Colors.WHITE);
-        ircColorMap.put(ChatFormatting.RESET, Colors.NORMAL);
+        ircColorMap.put(TextFormatting.AQUA, Colors.CYAN);
+        ircColorMap.put(TextFormatting.BLACK, Colors.BLACK);
+        ircColorMap.put(TextFormatting.BLUE, Colors.BLUE);
+        ircColorMap.put(TextFormatting.BOLD, Colors.BOLD);
+        ircColorMap.put(TextFormatting.DARK_AQUA, Colors.TEAL);
+        ircColorMap.put(TextFormatting.DARK_BLUE, Colors.DARK_BLUE);
+        ircColorMap.put(TextFormatting.DARK_GRAY, Colors.DARK_GRAY);
+        ircColorMap.put(TextFormatting.DARK_GREEN, Colors.DARK_GREEN);
+        ircColorMap.put(TextFormatting.DARK_PURPLE, Colors.PURPLE);
+        ircColorMap.put(TextFormatting.DARK_RED, Colors.RED);
+        ircColorMap.put(TextFormatting.GOLD, Colors.OLIVE);
+        ircColorMap.put(TextFormatting.GRAY, Colors.LIGHT_GRAY);
+        ircColorMap.put(TextFormatting.GREEN, Colors.GREEN);
+        ircColorMap.put(TextFormatting.LIGHT_PURPLE, Colors.MAGENTA);
+        ircColorMap.put(TextFormatting.RED, Colors.RED);
+        ircColorMap.put(TextFormatting.UNDERLINE, Colors.UNDERLINE);
+        ircColorMap.put(TextFormatting.YELLOW, Colors.YELLOW);
+        ircColorMap.put(TextFormatting.WHITE, Colors.WHITE);
+        ircColorMap.put(TextFormatting.RESET, Colors.NORMAL);
 
-        gameColorMap.put(Colors.BLACK, ChatFormatting.BLACK);
-        gameColorMap.put(Colors.BLUE, ChatFormatting.BLUE);
-        gameColorMap.put(Colors.BOLD, ChatFormatting.BOLD);
-        gameColorMap.put(Colors.BROWN, ChatFormatting.GRAY);
-        gameColorMap.put(Colors.CYAN, ChatFormatting.AQUA);
-        gameColorMap.put(Colors.DARK_BLUE, ChatFormatting.DARK_BLUE);
-        gameColorMap.put(Colors.DARK_GRAY, ChatFormatting.DARK_GRAY);
-        gameColorMap.put(Colors.DARK_GREEN, ChatFormatting.DARK_GREEN);
-        gameColorMap.put(Colors.GREEN, ChatFormatting.GREEN);
-        gameColorMap.put(Colors.LIGHT_GRAY, ChatFormatting.GRAY);
-        gameColorMap.put(Colors.MAGENTA, ChatFormatting.LIGHT_PURPLE);
-        gameColorMap.put(Colors.NORMAL, ChatFormatting.RESET);
-        gameColorMap.put(Colors.OLIVE, ChatFormatting.GOLD);
-        gameColorMap.put(Colors.PURPLE, ChatFormatting.DARK_PURPLE);
-        gameColorMap.put(Colors.RED, ChatFormatting.RED);
-        gameColorMap.put(Colors.TEAL, ChatFormatting.DARK_AQUA);
-        gameColorMap.put(Colors.UNDERLINE, ChatFormatting.UNDERLINE);
-        gameColorMap.put(Colors.WHITE, ChatFormatting.WHITE);
-        gameColorMap.put(Colors.YELLOW, ChatFormatting.YELLOW);
+        gameColorMap.put(Colors.BLACK, TextFormatting.BLACK);
+        gameColorMap.put(Colors.BLUE, TextFormatting.BLUE);
+        gameColorMap.put(Colors.BOLD, TextFormatting.BOLD);
+        gameColorMap.put(Colors.BROWN, TextFormatting.GRAY);
+        gameColorMap.put(Colors.CYAN, TextFormatting.AQUA);
+        gameColorMap.put(Colors.DARK_BLUE, TextFormatting.DARK_BLUE);
+        gameColorMap.put(Colors.DARK_GRAY, TextFormatting.DARK_GRAY);
+        gameColorMap.put(Colors.DARK_GREEN, TextFormatting.DARK_GREEN);
+        gameColorMap.put(Colors.GREEN, TextFormatting.GREEN);
+        gameColorMap.put(Colors.LIGHT_GRAY, TextFormatting.GRAY);
+        gameColorMap.put(Colors.MAGENTA, TextFormatting.LIGHT_PURPLE);
+        gameColorMap.put(Colors.NORMAL, TextFormatting.RESET);
+        gameColorMap.put(Colors.OLIVE, TextFormatting.GOLD);
+        gameColorMap.put(Colors.PURPLE, TextFormatting.DARK_PURPLE);
+        gameColorMap.put(Colors.RED, TextFormatting.RED);
+        gameColorMap.put(Colors.TEAL, TextFormatting.DARK_AQUA);
+        gameColorMap.put(Colors.UNDERLINE, TextFormatting.UNDERLINE);
+        gameColorMap.put(Colors.WHITE, TextFormatting.WHITE);
+        gameColorMap.put(Colors.YELLOW, TextFormatting.YELLOW);
     }
     
     public String translateAlternateColorCodes(char altColorChar, String textToTranslate) {

@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleBot;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Disconnect implements IRCCommandInterface {
     private final String usage = "([bot])";
     private final String desc = "Disconnect from IRC server.";
     private final String name = "disconnect";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

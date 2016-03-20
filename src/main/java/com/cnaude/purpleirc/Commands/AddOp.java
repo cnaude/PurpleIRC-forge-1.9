@@ -18,7 +18,7 @@ package com.cnaude.purpleirc.Commands;
 
 import com.cnaude.purpleirc.CommandSender;
 import com.cnaude.purpleirc.PurpleIRC;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import org.pircbotx.Channel;
 import org.pircbotx.User;
 
@@ -32,7 +32,7 @@ public class AddOp implements IRCCommandInterface {
     private final String usage = "[bot] [channel] [user|mask]";
     private final String desc = "Add IRC users to IRC auto op list.";
     private final String name = "addop";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -68,8 +68,8 @@ public class AddOp implements IRCCommandInterface {
                     plugin.ircBots.get(bot).addOp(channelName, mask, sender);
                     plugin.ircBots.get(bot).opIrcUsers(channelName);
                 } else {
-                    sender.sendMessage(ChatFormatting.RED + "Invalid user or mask: "
-                            + ChatFormatting.WHITE + mask);
+                    sender.sendMessage(TextFormatting.RED + "Invalid user or mask: "
+                            + TextFormatting.WHITE + mask);
                 }
             } else {
                 sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));

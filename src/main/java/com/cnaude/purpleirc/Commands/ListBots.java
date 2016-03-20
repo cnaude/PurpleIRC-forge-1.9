@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleBot;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import org.pircbotx.Channel;
 
 /**
@@ -49,17 +49,17 @@ public class ListBots implements IRCCommandInterface {
      */
     @Override
     public void dispatch(CommandSender sender, String[] args) {
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "-----[  " + ChatFormatting.WHITE + "IRC Bots"
-                + ChatFormatting.DARK_PURPLE + "   ]-----");
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "-----[  " + TextFormatting.WHITE + "IRC Bots"
+                + TextFormatting.DARK_PURPLE + "   ]-----");
         for (PurpleBot ircBot : plugin.ircBots.values()) {
-            sender.sendMessage(ChatFormatting.DARK_PURPLE + "* " + ChatFormatting.WHITE + ircBot.getFileName()
-                    + ChatFormatting.DARK_PURPLE + " [" + ChatFormatting.WHITE + ircBot.botNick + ChatFormatting.DARK_PURPLE + "]");
+            sender.sendMessage(TextFormatting.DARK_PURPLE + "* " + TextFormatting.WHITE + ircBot.getFileName()
+                    + TextFormatting.DARK_PURPLE + " [" + TextFormatting.WHITE + ircBot.botNick + TextFormatting.DARK_PURPLE + "]");
             if (ircBot.isConnected()) {
                 for (Channel channel : ircBot.getChannels()) {
-                    sender.sendMessage(ChatFormatting.DARK_PURPLE + "  - " + ChatFormatting.WHITE + channel.getName());
+                    sender.sendMessage(TextFormatting.DARK_PURPLE + "  - " + TextFormatting.WHITE + channel.getName());
                 }
             } else {
-                sender.sendMessage(ChatFormatting.RED + "Not connected.");
+                sender.sendMessage(TextFormatting.RED + "Not connected.");
             }
         }
     }

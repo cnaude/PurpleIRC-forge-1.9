@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -34,7 +34,7 @@ public class SendRaw implements IRCCommandInterface {
     private final String usage = "([bot]) [message]";
     private final String desc = "Send raw message to the IRC server.";
     private final String name = "sendraw";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

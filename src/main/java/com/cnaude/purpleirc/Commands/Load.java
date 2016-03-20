@@ -21,7 +21,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 import java.io.File;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -33,7 +33,7 @@ public class Load implements IRCCommandInterface {
     private final String usage = "[bot]";
     private final String desc = "Load a bot file.";
     private final String name = "load";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -53,16 +53,16 @@ public class Load implements IRCCommandInterface {
         if (args.length >= 2) {
             String bot = plugin.botify(args[1]);
             if (plugin.ircBots.containsKey(bot)) {
-                sender.sendMessage(ChatFormatting.RED + "Sorry that bot is already loaded. Try to unload it first.");
+                sender.sendMessage(TextFormatting.RED + "Sorry that bot is already loaded. Try to unload it first.");
                 return;
             }
             File file = new File(plugin.botsFolder, bot);
             if (file.exists()) {
-                sender.sendMessage(ChatFormatting.WHITE + "Loading " + bot + "...");
+                sender.sendMessage(TextFormatting.WHITE + "Loading " + bot + "...");
                 plugin.ircBots.put(file.getName(), new PurpleBot(file, plugin));
                 sender.sendMessage("Loaded bot: " + file.getName() + "[" + plugin.ircBots.get(file.getName()).botNick + "]");
             } else {
-                sender.sendMessage(ChatFormatting.RED + "No such bot file: " + ChatFormatting.WHITE + bot);
+                sender.sendMessage(TextFormatting.RED + "No such bot file: " + TextFormatting.WHITE + bot);
             }
         } else {
             sender.sendMessage(fullUsage);

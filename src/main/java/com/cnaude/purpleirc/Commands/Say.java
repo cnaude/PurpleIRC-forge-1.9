@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
 import com.cnaude.purpleirc.Utilities.ChatColor;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Say implements IRCCommandInterface {
     private final String usage = "[bot] [channel] [message]";
     private final String desc = "Make the bot speak.";
     private final String name = "say";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

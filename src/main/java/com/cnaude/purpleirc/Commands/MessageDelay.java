@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -31,7 +31,7 @@ public class MessageDelay implements IRCCommandInterface {
     private final String usage = "[bot] [milliseconds]";
     private final String desc = "Change IRC message delay.";
     private final String name = "messagedelay";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -63,7 +63,7 @@ public class MessageDelay implements IRCCommandInterface {
         } else if (args.length == 2) {
             String bot = plugin.botify(args[1]);
             if (plugin.ircBots.containsKey(bot)) {
-                sender.sendMessage(ChatFormatting.WHITE + "IRC message delay is currently "
+                sender.sendMessage(TextFormatting.WHITE + "IRC message delay is currently "
                         + plugin.ircBots.get(bot).getMessageDelay() + " ms.");
             } else {
                 sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));

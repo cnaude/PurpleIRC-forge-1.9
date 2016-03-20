@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Join implements IRCCommandInterface {
     private final String usage = "[bot] [channel] ([password])";
     private final String desc = "Join IRC channel.";
     private final String name = "join";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -59,7 +59,7 @@ public class Join implements IRCCommandInterface {
             }
             if (plugin.ircBots.containsKey(bot)) {
                 plugin.ircBots.get(bot).asyncJoinChannel(channelName, password);
-                sender.sendMessage(ChatFormatting.WHITE + "Joining " + channelName + "...");
+                sender.sendMessage(TextFormatting.WHITE + "Joining " + channelName + "...");
             } else {
                 sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
             }

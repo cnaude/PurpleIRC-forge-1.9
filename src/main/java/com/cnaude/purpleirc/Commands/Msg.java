@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import com.cnaude.purpleirc.CommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -35,7 +35,7 @@ public class Msg implements IRCCommandInterface {
     private final String usage = "([bot]) [user] [message]";
     private final String desc = "Send a private message to an IRC user.";
     private final String name = "msg";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

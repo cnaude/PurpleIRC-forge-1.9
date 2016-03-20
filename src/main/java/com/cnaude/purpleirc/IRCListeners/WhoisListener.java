@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import org.pircbotx.Channel;
 import org.pircbotx.User;
 import org.pircbotx.hooks.ListenerAdapter;
@@ -58,11 +58,11 @@ public class WhoisListener extends ListenerAdapter {
         }
         CommandSender sender = ircBot.whoisSenders.remove(0);
 
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "----[ " + ChatFormatting.WHITE + "Whois" + ChatFormatting.DARK_PURPLE + " ]----");
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "Nick: " + ChatFormatting.WHITE + event.getNick());
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "Username: " + ChatFormatting.WHITE + event.getLogin() + "@" + event.getHostname());
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "Real name: " + ChatFormatting.WHITE + event.getRealname());
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "Server: " + ChatFormatting.WHITE + event.getServer());
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "----[ " + TextFormatting.WHITE + "Whois" + TextFormatting.DARK_PURPLE + " ]----");
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "Nick: " + TextFormatting.WHITE + event.getNick());
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "Username: " + TextFormatting.WHITE + event.getLogin() + "@" + event.getHostname());
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "Real name: " + TextFormatting.WHITE + event.getRealname());
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "Server: " + TextFormatting.WHITE + event.getServer());
         User user = null;
         for (Channel channel : ircBot.getBot().getUserBot().getChannels()) {
             for (User u : channel.getUsers()) {
@@ -74,7 +74,7 @@ public class WhoisListener extends ListenerAdapter {
         }
         if (user != null) {
             if (user.isAway()) {
-                sender.sendMessage(ChatFormatting.DARK_PURPLE + "Away: " + ChatFormatting.WHITE + user.getAwayMessage());
+                sender.sendMessage(TextFormatting.DARK_PURPLE + "Away: " + TextFormatting.WHITE + user.getAwayMessage());
             }
         }
         if (!event.getChannels().isEmpty()) {
@@ -83,11 +83,11 @@ public class WhoisListener extends ListenerAdapter {
                 sb.append(" ");
                 sb.append(channel);
             }
-            sender.sendMessage(ChatFormatting.DARK_PURPLE + "Currently on:" + ChatFormatting.WHITE + sb.toString());
+            sender.sendMessage(TextFormatting.DARK_PURPLE + "Currently on:" + TextFormatting.WHITE + sb.toString());
         }
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "Idle: " + ChatFormatting.WHITE + secondsToTime(event.getIdleSeconds()));
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "Online since: " + ChatFormatting.WHITE + secondsToDate(event.getSignOnTime()));
-        sender.sendMessage(ChatFormatting.DARK_PURPLE + "----[ " + ChatFormatting.WHITE + "End Whois" + ChatFormatting.DARK_PURPLE + " ]----");
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "Idle: " + TextFormatting.WHITE + secondsToTime(event.getIdleSeconds()));
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "Online since: " + TextFormatting.WHITE + secondsToDate(event.getSignOnTime()));
+        sender.sendMessage(TextFormatting.DARK_PURPLE + "----[ " + TextFormatting.WHITE + "End Whois" + TextFormatting.DARK_PURPLE + " ]----");
     }
 
     private String secondsToDate(long sec) {

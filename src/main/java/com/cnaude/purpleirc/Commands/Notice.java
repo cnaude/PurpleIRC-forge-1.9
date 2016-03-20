@@ -21,7 +21,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 import java.util.ArrayList;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -33,7 +33,7 @@ public class Notice implements IRCCommandInterface {
     private final String usage = "([bot]) [target] [message]";
     private final String desc = "Send notice message to the user or channel.";
     private final String name = "notice";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

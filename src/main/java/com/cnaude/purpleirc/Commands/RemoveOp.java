@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -31,7 +31,7 @@ public class RemoveOp implements IRCCommandInterface {
     private final String usage = "[bot] [channel] [user mask]";
     private final String desc = "Remove a user mask from the auto-op list.";
     private final String name = "removeop";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

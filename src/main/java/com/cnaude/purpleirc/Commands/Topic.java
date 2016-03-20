@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 import com.cnaude.purpleirc.Utilities.BotsAndChannels;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Topic implements IRCCommandInterface {
     private final String usage = "([bot]) ([channel]) ([topic])";
     private final String desc = "Set, or get, IRC channel top";
     private final String name = "topic";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -62,10 +62,10 @@ public class Topic implements IRCCommandInterface {
             bac = new BotsAndChannels(plugin, sender);
             for (String botName : bac.bot) {
                 for (String channelName : bac.channel) {
-                    sender.sendMessage(ChatFormatting.WHITE + "[" + ChatFormatting.DARK_PURPLE
-                            + botName + ChatFormatting.WHITE
-                            + "/" + ChatFormatting.DARK_PURPLE + channelName
-                            + ChatFormatting.WHITE + "]"
+                    sender.sendMessage(TextFormatting.WHITE + "[" + TextFormatting.DARK_PURPLE
+                            + botName + TextFormatting.WHITE
+                            + "/" + TextFormatting.DARK_PURPLE + channelName
+                            + TextFormatting.WHITE + "]"
                             + " Topic: " + plugin.ircBots.get(botName).channelTopic.get(channelName));
                 }
             }

@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 import java.io.File;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Unload implements IRCCommandInterface {
     private final String usage = "[bot] (disable)";
     private final String desc = "Unload the bot and optionally disable it.";
     private final String name = "unload";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -52,13 +52,13 @@ public class Unload implements IRCCommandInterface {
         if (args.length >= 2) {
             String bot = plugin.botify(args[1]);
             if (plugin.ircBots.containsKey(bot)) {
-                sender.sendMessage(ChatFormatting.WHITE + "Unloading " + bot + "...");
+                sender.sendMessage(TextFormatting.WHITE + "Unloading " + bot + "...");
                 plugin.ircBots.get(bot).quit();
                 plugin.ircBots.get(bot).saveConfig();
                 plugin.ircBots.remove(bot);
                 if (args.length >= 3) {
                     if (args[2].equalsIgnoreCase("disable")) {
-                        sender.sendMessage(ChatFormatting.WHITE + "Renaming " + bot + " to " + bot + ".disabled");
+                        sender.sendMessage(TextFormatting.WHITE + "Renaming " + bot + " to " + bot + ".disabled");
                         File file = new File(plugin.botsFolder, bot);
                         file.renameTo(new File(plugin.botsFolder, bot + ".disabled"));
                     }

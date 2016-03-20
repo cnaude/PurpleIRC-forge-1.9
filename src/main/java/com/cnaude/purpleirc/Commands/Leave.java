@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import org.pircbotx.Channel;
 
 /**
@@ -32,7 +32,7 @@ public class Leave implements IRCCommandInterface {
     private final String usage = "[bot] [channel]";
     private final String desc = "Leave IRC channel.";
     private final String name = "leave";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -63,13 +63,13 @@ public class Leave implements IRCCommandInterface {
                     for (Channel channel : plugin.ircBots.get(bot).getChannels()) {
                         if (channel.getName().equalsIgnoreCase(channelName)) {
                             channel.send().part(reason);
-                            sender.sendMessage(ChatFormatting.WHITE + "Leaving " + channelName + "...");
+                            sender.sendMessage(TextFormatting.WHITE + "Leaving " + channelName + "...");
                             return;
                         }
                     }
-                    sender.sendMessage(ChatFormatting.WHITE + "Channel " + channelName + " is not valid.");
+                    sender.sendMessage(TextFormatting.WHITE + "Channel " + channelName + " is not valid.");
                 } else {
-                    sender.sendMessage(ChatFormatting.RED + "Not connected.");
+                    sender.sendMessage(TextFormatting.RED + "Not connected.");
                 }
             } else {
                 sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));

@@ -30,7 +30,7 @@ public class List implements IRCCommandInterface {
     private final String usage = "([bot]) ([channel])";
     private final String desc = "List users in IRC channel.";
     private final String name = "list";
-    //private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage; 
+    //private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage; 
 
     /**
      *

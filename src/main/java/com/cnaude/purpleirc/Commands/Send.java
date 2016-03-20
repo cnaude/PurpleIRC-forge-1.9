@@ -24,7 +24,7 @@ import java.util.List;
 import com.cnaude.purpleirc.CommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -36,7 +36,7 @@ public class Send implements IRCCommandInterface {
     private final String usage = "([bot]) ([channel]) [message]";
     private final String desc = "Send a message to an IRC channel.";
     private final String name = "send";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

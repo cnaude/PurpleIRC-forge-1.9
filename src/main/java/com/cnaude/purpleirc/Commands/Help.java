@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -56,8 +56,8 @@ public class Help implements IRCCommandInterface {
                         plugin.commandHandlers.commands.get(s).usage()));
                 return;
             } else {
-                sender.sendMessage(ChatFormatting.RED + "Invalid sub command: "
-                        + ChatFormatting.WHITE + s);
+                sender.sendMessage(TextFormatting.RED + "Invalid sub command: "
+                        + TextFormatting.WHITE + s);
                 return;
             }
         }

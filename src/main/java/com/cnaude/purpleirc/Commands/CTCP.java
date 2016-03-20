@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.PurpleIRC;
 import java.util.ArrayList;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class CTCP implements IRCCommandInterface {
     private final String usage = "([bot]) [target] [command]";
     private final String desc = "Send CTCP command to the user or channel.";
     private final String name = "ctcp";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

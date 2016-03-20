@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Kick implements IRCCommandInterface {
     private final String usage = "[bot] [channel] [user(s)]";
     private final String desc = "Kick user(s) from IRC channel.";
     private final String name = "kick";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -55,7 +55,7 @@ public class Kick implements IRCCommandInterface {
                 for (int i = 3; i < args.length; i++) {
                     // #channel, user
                     plugin.ircBots.get(bot).kick(channelName, args[3]);
-                    sender.sendMessage(ChatFormatting.WHITE + "Kicking " + args[i] + " from " + channelName + "...");
+                    sender.sendMessage(TextFormatting.WHITE + "Kicking " + args[i] + " from " + channelName + "...");
                 }
             } else {
                 sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));

@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Debug implements IRCCommandInterface {
     private final String usage = "([t|f])";
     private final String desc = "Enable or disable debug mode.";
     private final String name = "debug";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -49,8 +49,8 @@ public class Debug implements IRCCommandInterface {
     @Override
     public void dispatch(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage(ChatFormatting.DARK_PURPLE + "Debug mode is currently "
-                    + ChatFormatting.WHITE + plugin.debugMode());
+            sender.sendMessage(TextFormatting.DARK_PURPLE + "Debug mode is currently "
+                    + TextFormatting.WHITE + plugin.debugMode());
         } else if (args.length == 2) {
             if (args[1].startsWith("t")) {
                 plugin.debugMode(true);
@@ -59,8 +59,8 @@ public class Debug implements IRCCommandInterface {
             } else {
                 sender.sendMessage(usage);
             }
-            sender.sendMessage(ChatFormatting.DARK_PURPLE + "Debug mode is now "
-                    + ChatFormatting.WHITE + plugin.debugMode());
+            sender.sendMessage(TextFormatting.DARK_PURPLE + "Debug mode is now "
+                    + TextFormatting.WHITE + plugin.debugMode());
         } else {
             sender.sendMessage(fullUsage);
         }

@@ -20,7 +20,7 @@ import com.cnaude.purpleirc.Utilities.BotsAndChannels;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -32,7 +32,7 @@ public class MuteList implements IRCCommandInterface {
     private final String usage = "([bot]) ([channel])";
     private final String desc = "List muted IRC user(s) for a channel.";
     private final String name = "mutelist";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *

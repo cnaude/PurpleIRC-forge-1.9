@@ -32,7 +32,6 @@ import com.cnaude.purpleirc.Utilities.RegexGlobber;
 import com.cnaude.purpleirc.Utilities.UpdateChecker;
 import com.cnaude.purpleirc.Utilities.PurpleConfiguration;
 import com.google.common.base.Joiner;
-import com.mojang.realmsclient.gui.ChatFormatting;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -60,6 +59,7 @@ import java.util.TimerTask;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
@@ -72,6 +72,7 @@ import net.minecraftforge.fml.server.FMLServerHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.scanner.ScannerException;
+import static net.minecraft.util.text.TextFormatting.RED;
 
 /**
  *
@@ -117,17 +118,17 @@ public class PurpleIRC {
 
     public ArrayList<String> kickedPlayers = new ArrayList<>();
 
-    public final String invalidBotName = ChatFormatting.RED + "Invalid bot name: "
-            + ChatFormatting.WHITE + "%BOT%"
-            + ChatFormatting.RED + ". Type '" + ChatFormatting.WHITE + "/irc listbots"
-            + ChatFormatting.RED + "' to see valid bots.";
+    public final String invalidBotName = RED + "Invalid bot name: "
+            + TextFormatting.WHITE + "%BOT%"
+            + TextFormatting.RED + ". Type '" + TextFormatting.WHITE + "/irc listbots"
+            + TextFormatting.RED + "' to see valid bots.";
 
-    public final String invalidChannelName = ChatFormatting.RED + "Invalid channel name: "
-            + ChatFormatting.WHITE + "%CHANNEL%";
+    public final String invalidChannelName = TextFormatting.RED + "Invalid channel name: "
+            + TextFormatting.WHITE + "%CHANNEL%";
 
-    public final String invalidChannel = ChatFormatting.RED + "Invalid channel: "
-            + ChatFormatting.WHITE + "%CHANNEL%";
-    public final String noPermission = ChatFormatting.RED + "You do not have permission to use this command.";
+    public final String invalidChannel = TextFormatting.RED + "Invalid channel: "
+            + TextFormatting.WHITE + "%CHANNEL%";
+    public final String noPermission = TextFormatting.RED + "You do not have permission to use this command.";
 
     private boolean updateCheckerEnabled;
     private String updateCheckerMode;
@@ -162,7 +163,7 @@ public class PurpleIRC {
 
     public PurpleIRC() {
         this.LOG_HEADER = "[" + MOD_ID + "]";
-        this.LOG_HEADER_F = ChatFormatting.DARK_PURPLE + "[" + MOD_ID + "]" + ChatFormatting.RESET;
+        this.LOG_HEADER_F = TextFormatting.DARK_PURPLE + "[" + MOD_ID + "]" + TextFormatting.RESET;
         this.MAINCONFIG = "MAIN-CONFIG";
         this.pluginFolder = new File("config/" + MOD_ID);
         this.botsFolder = new File(pluginFolder, "bots");

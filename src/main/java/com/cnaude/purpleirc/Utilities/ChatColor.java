@@ -1,6 +1,6 @@
 package com.cnaude.purpleirc.Utilities;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import java.util.regex.Pattern;
 
 /**
@@ -19,7 +19,7 @@ public class ChatColor {
         return STRIP_COLOR_PATTERN.matcher(input).replaceAll("");
     }
     
-    public static ChatFormatting valueOf(final String input) {
-        return ChatFormatting.getByName(input.toUpperCase());
+    public static TextFormatting valueOf(final String input) {
+        return TextFormatting.getValueByName(input.toUpperCase());
     }
 }

@@ -19,7 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
-import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 /**
  *
@@ -31,7 +31,7 @@ public class ListOps implements IRCCommandInterface {
     private final String usage = "[bot] [channel]";
     private final String desc = "List IRC user mask in auto-op list.";
     private final String name = "listops";
-    private final String fullUsage = ChatFormatting.WHITE + "Usage: " + ChatFormatting.GOLD + "/irc " + name + " " + usage;
+    private final String fullUsage = TextFormatting.WHITE + "Usage: " + TextFormatting.GOLD + "/irc " + name + " " + usage;
 
     /**
      *
@@ -53,8 +53,8 @@ public class ListOps implements IRCCommandInterface {
             String channelName = args[2];
             if (plugin.ircBots.containsKey(bot)) {
                 if (plugin.ircBots.get(bot).opsList.containsKey(channelName)) {
-                    sender.sendMessage(ChatFormatting.DARK_PURPLE + "-----[  " + ChatFormatting.WHITE + channelName
-                            + ChatFormatting.DARK_PURPLE + " - " + ChatFormatting.WHITE + "Auto Op Masks" + ChatFormatting.DARK_PURPLE + " ]-----");
+                    sender.sendMessage(TextFormatting.DARK_PURPLE + "-----[  " + TextFormatting.WHITE + channelName
+                            + TextFormatting.DARK_PURPLE + " - " + TextFormatting.WHITE + "Auto Op Masks" + TextFormatting.DARK_PURPLE + " ]-----");
                     for (String userMask : plugin.ircBots.get(bot).opsList.get(channelName)) {
                         sender.sendMessage(" - " + userMask);
                     }
