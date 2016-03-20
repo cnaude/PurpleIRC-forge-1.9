@@ -72,8 +72,12 @@ public final class PurpleConfiguration {
 
     public <T> T getOption(String field, T def) {
         if (result.containsKey(field)) {
-            if (result.get(field).getClass().equals(def.getClass())) {
-                return (T) result.get(field);
+            try {
+                if (result.get(field).getClass().equals(def.getClass())) {
+                    return (T) result.get(field);
+                }
+            } catch (Exception ex) {
+                return (T) def;
             }
         }
         set(field, (T) def);
@@ -107,11 +111,11 @@ public final class PurpleConfiguration {
     public <T> void set(String field, T value) {
         result.put(field, (T) value);
     }
-    
+
     public <T> void set(String field, String subField, T value) {
         if (result.containsKey(field)) {
             if (result.get(field) instanceof Map) {
-                ((Map<String, Object>)result.get(field)).put(subField, (T) value);
+                ((Map<String, Object>) result.get(field)).put(subField, (T) value);
             }
         }
     }
