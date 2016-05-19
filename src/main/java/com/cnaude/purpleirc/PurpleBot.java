@@ -895,7 +895,7 @@ public final class PurpleBot {
                 + "Reload for the change to take effect.");
     }
 
-    private boolean isPlayerInValidWorld(EntityPlayerMP player, String channelName) {
+    private boolean isPlayerInValidWorld(EntityPlayer player, String channelName) {
         if (worldList.containsKey(channelName)) {
             if (worldList.get(channelName).contains("*")) {
                 return true;
@@ -1107,7 +1107,7 @@ public final class PurpleBot {
      * @param player
      * @param achievement
      */
-    public void gameAchievement(EntityPlayerMP player, Achievement achievement) {
+    public void gameAchievement(EntityPlayer player, Achievement achievement) {
         if (!this.isConnected()) {
             return;
         }

@@ -43,7 +43,7 @@ configurations {
 }
 
 minecraft {
-    version = "1.9-12.16.0.1769-1.9"
+    version = "${minecraft_version}-${forge_version}"
     runDir = "run"
     
     mappings = "${forge_mappings}"

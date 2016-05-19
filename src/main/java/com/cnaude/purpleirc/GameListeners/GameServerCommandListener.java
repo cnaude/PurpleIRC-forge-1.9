@@ -44,16 +44,16 @@ public class GameServerCommandListener {
 
     @SubscribeEvent
     public void onServerCommand(CommandEvent event) {
-        if (event.command instanceof CommandEmote) {
-            if (event.sender instanceof EntityPlayer) {
-                EntityPlayerMP player = (EntityPlayerMP)event.sender;
-                String msg = Joiner.on(" ").join(event.parameters);
+        if (event.getCommand() instanceof CommandEmote) {
+            if (event.getSender() instanceof EntityPlayerMP) {
+                EntityPlayerMP player = (EntityPlayerMP)event.getSender();
+                String msg = Joiner.on(" ").join(event.getParameters());
                 for (PurpleBot ircBot : plugin.ircBots.values()) {
                     ircBot.gameAction(player, msg);
                 }                
             }
-        } else if (event.command instanceof CommandBroadcast) {
-            String msg = Joiner.on(" ").join(event.parameters);
+        } else if (event.getCommand() instanceof CommandBroadcast) {
+            String msg = Joiner.on(" ").join(event.getParameters());
             for (PurpleBot ircBot : plugin.ircBots.values()) {
                 ircBot.consoleBroadcast(msg);
             }

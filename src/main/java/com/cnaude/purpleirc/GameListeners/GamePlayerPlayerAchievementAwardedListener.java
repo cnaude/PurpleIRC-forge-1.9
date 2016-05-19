@@ -42,7 +42,7 @@ public class GamePlayerPlayerAchievementAwardedListener {
     @SubscribeEvent
     public void onAchievement(AchievementEvent event) {
         for (PurpleBot ircBot : plugin.ircBots.values()) {
-            ircBot.gameAchievement((EntityPlayerMP)event.entityPlayer, event.achievement);
+            ircBot.gameAchievement(event.getEntityPlayer(), event.getAchievement());
         }
 
     }

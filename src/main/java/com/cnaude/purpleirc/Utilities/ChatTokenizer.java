@@ -18,6 +18,7 @@ package com.cnaude.purpleirc.Utilities;
 
 import com.cnaude.purpleirc.PurpleBot;
 import com.cnaude.purpleirc.PurpleIRC;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import org.pircbotx.User;
 
@@ -120,7 +121,7 @@ public class ChatTokenizer {
     public String ircChatToGameTokenizer(PurpleBot ircBot, User user, org.pircbotx.Channel channel, String template, String message) {
         String ircNick = user.getNick();
         String tmpl;
-        EntityPlayerMP player = this.getPlayer(ircNick);
+        EntityPlayer player = this.getPlayer(ircNick);
         if (player != null) {
             tmpl = playerTokenizer(player, template);
         } else {
@@ -211,7 +212,7 @@ public class ChatTokenizer {
      * @param message
      * @return
      */
-    public String gameChatToIRCTokenizer(EntityPlayerMP player, String template, String message) {
+    public String gameChatToIRCTokenizer(EntityPlayer player, String template, String message) {
         if (message == null) {
             message = "";
         }
@@ -247,7 +248,7 @@ public class ChatTokenizer {
      *
      * @return
      */
-    public String gamePlayerAFKTokenizer(EntityPlayerMP player, String template) {
+    public String gamePlayerAFKTokenizer(EntityPlayer player, String template) {
         return plugin.colorConverter.gameColorsToIrc(playerTokenizer(player, template));
     }
 
@@ -272,23 +273,30 @@ public class ChatTokenizer {
      * @param message
      * @return
      */
-    public String gameKickTokenizer(EntityPlayerMP player, String template, String message, String reason) {
+    public String gameKickTokenizer(EntityPlayer player, String template, String message, String reason) {
         return plugin.colorConverter.gameColorsToIrc(
                 gameChatToIRCTokenizer(player, template, message)
                 .replace("%MESSAGE%", message)
                 .replace("%REASON%", reason));
     }
 
-    public String playerTokenizer(EntityPlayerMP player, String message) {
+    public String playerTokenizer(EntityPlayer player, String message) {
         String pName = player.getName();
+        String worldName = "";
+        EntityPlayerMP playerMP = null;
+        if (player instanceof EntityPlayerMP) {
+            playerMP = (EntityPlayerMP) player;
+        }
         String displayName = player.getDisplayNameString();
         String playerIP = "";
         try {
-            playerIP = player.getPlayerIP();
-        } catch (Exception ex) {            
+            if (playerMP != null) {
+                playerIP = playerMP.getPlayerIP();
+                worldName = plugin.getPlayerWorldName(playerMP);
+            }
+        } catch (Exception ex) {
         }
         String host = plugin.getPlayerHost(playerIP);
-        String worldName = plugin.getPlayerWorldName(player);
         String worldAlias = "";
         String worldColor = "";
         String jobShort = "";
@@ -323,8 +331,8 @@ public class ChatTokenizer {
                 .replace("%WORLD%", worldName);
     }
 
-    private EntityPlayerMP getPlayer(String name) {
-        EntityPlayerMP player;
+    private EntityPlayer getPlayer(String name) {
+        EntityPlayer player;
         if (plugin.exactNickMatch) {
             plugin.logDebug("Checking for exact player matching " + name);
             player = plugin.getPlayerExact(name);
@@ -334,7 +342,7 @@ public class ChatTokenizer {
         }
         return player;
     }
-    
+
     /**
      *
      * @param player
@@ -343,7 +351,7 @@ public class ChatTokenizer {
      * @param params
      * @return
      */
-    public String gameCommandToIRCTokenizer(EntityPlayerMP player, String template, String cmd, String params) {
+    public String gameCommandToIRCTokenizer(EntityPlayer player, String template, String cmd, String params) {
         return plugin.colorConverter.gameColorsToIrc(playerTokenizer(player, template)
                 .replace("%COMMAND%", cmd)
                 .replace("%PARAMS%", params));
