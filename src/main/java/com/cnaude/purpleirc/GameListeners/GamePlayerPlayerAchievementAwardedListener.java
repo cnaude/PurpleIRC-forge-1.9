@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  *
  * @author cnaude
  */
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.player.AchievementEvent;
 
 public class GamePlayerPlayerAchievementAwardedListener {

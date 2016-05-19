@@ -1111,7 +1111,6 @@ public final class PurpleBot {
         if (!this.isConnected()) {
             return;
         }
-        String message = achievement.getDescription();
         for (String channelName : botChannels) {
             if (isMessageEnabled(channelName, TemplateName.GAME_ACHIEVEMENT)) {
                 if (!isPlayerInValidWorld(player, channelName)) {
@@ -1119,7 +1118,7 @@ public final class PurpleBot {
                 }
                 asyncIRCMessage(channelName, plugin.tokenizer
                         .gameChatToIRCTokenizer(player, plugin.getMsgTemplate(
-                                        botNick, TemplateName.GAME_ACHIEVEMENT), message));
+                                        botNick, TemplateName.GAME_ACHIEVEMENT), achievement.getDescription()));
             }
         }
     }
