@@ -26,7 +26,6 @@ import net.minecraftforge.common.MinecraftForge;
 import org.pircbotx.Channel;
 import org.pircbotx.User;
 
-
 /**
  *
  * @author cnaude
@@ -58,8 +57,12 @@ public class IRCMessageHandler {
             plugin.logDebug("User is muted. Ignoring message from " + user.getNick() + ": " + message);
             return;
         }
-        String command = message.split(" ")[0].substring(ircBot.commandPrefix.length());
-        
+        plugin.logDebug("commandPrefix.length(): " + ircBot.commandPrefix.length());
+        String command = message.split(" ")[0];
+        if (command.length() > ircBot.commandPrefix.length()) {
+            command = command.substring(ircBot.commandPrefix.length());
+        }
+
         if (message.startsWith(ircBot.commandPrefix) && command.matches("^\\w.*")) {
 
             String commandArgs = null;
@@ -150,7 +153,7 @@ public class IRCMessageHandler {
                                 plugin.logDebug("GM: \"" + gameCommand.trim() + "\"");
                                 try {
                                     plugin.commandQueue.add(new IRCCommand(
-                                            new IRCCommandSender(ircBot, target, plugin, ctcpResponse, senderName),                                            
+                                            new IRCCommandSender(ircBot, target, plugin, ctcpResponse, senderName),
                                             gameCommand.trim()));
                                 } catch (Exception ex) {
                                     plugin.logError(ex.getMessage());
@@ -252,7 +255,7 @@ public class IRCMessageHandler {
 
     /* No permission support in Forge 
     
-    */
+     */
     private boolean checkPerm(String perm, String playerName) {
         return true;
     }
@@ -271,5 +274,5 @@ public class IRCMessageHandler {
             return false;
         }
     }
-    */
+     */
 }
