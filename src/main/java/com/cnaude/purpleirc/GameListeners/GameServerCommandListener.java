@@ -19,12 +19,12 @@ package com.cnaude.purpleirc.GameListeners;
 import com.cnaude.purpleirc.PurpleBot;
 import com.cnaude.purpleirc.PurpleIRC;
 import com.google.common.base.Joiner;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.command.server.CommandBroadcast;
 import net.minecraft.command.server.CommandEmote;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.CommandEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  *
@@ -45,17 +45,24 @@ public class GameServerCommandListener {
     @SubscribeEvent
     public void onServerCommand(CommandEvent event) {
         if (event.getCommand() instanceof CommandEmote) {
-            if (event.getSender() instanceof EntityPlayerMP) {
-                EntityPlayerMP player = (EntityPlayerMP)event.getSender();
+            if (event.getSender() instanceof EntityPlayer) {
+                EntityPlayerMP player = (EntityPlayerMP) event.getSender();
                 String msg = Joiner.on(" ").join(event.getParameters());
                 for (PurpleBot ircBot : plugin.ircBots.values()) {
                     ircBot.gameAction(player, msg);
-                }                
+                }
             }
         } else if (event.getCommand() instanceof CommandBroadcast) {
             String msg = Joiner.on(" ").join(event.getParameters());
-            for (PurpleBot ircBot : plugin.ircBots.values()) {
-                ircBot.consoleBroadcast(msg);
+            String cmd = event.getCommand().getCommandName();
+            if (cmd.equals("say")) {
+                for (PurpleBot ircBot : plugin.ircBots.values()) {
+                    ircBot.consoleChat(msg);
+                }
+            } else if (cmd.equals("broadcast")) {
+                for (PurpleBot ircBot : plugin.ircBots.values()) {
+                    ircBot.consoleBroadcast(msg);
+                }
             }
         }
     }
